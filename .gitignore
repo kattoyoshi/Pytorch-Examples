@@ -4,6 +4,12 @@
 *.ipynb_checkpoints/
 *__pycache__/
 
+notebooks/2_NeuralNetwork/data/
+!.gitkeep
+notebooks/2_NeuralNetwork/saved_model/
+!.gitkeep
+
+
 # file
 *.zip
 *.tar
