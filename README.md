@@ -9,7 +9,7 @@ This repository shows basic code examples of the pytorch.
 - Description of DataLoader / Sampler [[ipynb]]()
 
 ### 3. MLP
-- Classification of the MNIST Dataset [[ipynb]](notebooks/2_MLP/MLP_MNIST.ipynb)
+- Classification of the MNIST Dataset [[ipynb]](notebooks/3_MLP/MLP_MNIST.ipynb)
 
 ### 4. Convolutional Neural Network
 - Classification of the MNIST Dataset using CNN [[ipynb]]()
