@@ -4,9 +4,9 @@
 *.ipynb_checkpoints/
 *__pycache__/
 
-notebooks/2_NeuralNetwork/data/
+notebooks/3_MLP/data/
 !.gitkeep
-notebooks/2_NeuralNetwork/saved_model/
+notebooks/3_MLP/saved_model/
 !.gitkeep
 
 
