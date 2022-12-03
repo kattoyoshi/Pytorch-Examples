@@ -1,0 +1,60 @@
+# ----------------------------------------------------#
+# ubuntu        20.04
+# python        3.8
+# pytorch       1.13.0a0+936e930
+# cuda          11.8.0
+# cudnn         8.7.0
+# ----------------------------------------------------#
+FROM nvcr.io/nvidia/pytorch:22.11-py3
+
+# ----------------------------------------------------#
+# Install Linux Packages as root user
+# ----------------------------------------------------#
+RUN apt update -y \
+    && apt install -y sudo \
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# ----------------------------------------------------#
+# Install Python Packages
+# ----------------------------------------------------#
+RUN pip install --upgrade pip
+RUN pip install -U setuptools
+RUN pip --no-cache-dir install \
+    Pillow \
+    jupyter notebook \
+    jupyterlab \
+    matplotlib \
+    scipy \
+    scikit-learn \
+    scikit-image \
+    opencv-python \
+    tqdm \
+    && python -m ipykernel.kernelspec
+
+# ----------------------------------------------------#
+# Port Setting
+# ----------------------------------------------------#
+# TensorBoard
+EXPOSE 6006
+# Jupyter
+EXPOSE 8888
+
+# ----------------------------------------------------#
+# Create non root user
+# ----------------------------------------------------#
+ARG USERNAME=developer
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+# Give sudo permission
+RUN usermod -aG sudo $USERNAME
+
+# Switch to created user
+USER $USERNAME
+
+# Set container root path to workspace
+WORKDIR /home/developer/workspace
